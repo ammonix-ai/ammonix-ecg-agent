@@ -2,7 +2,12 @@ import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { AlertTriangle, Play, Loader2 } from 'lucide-react';
 import { useAnalyzeStore } from '@/stores/analyzeStore';
-import { uploadsAllowed, useStatusStore } from '@/stores/statusStore';
+import {
+  installedData,
+  MISSING_DATA_NOTE,
+  uploadsAllowed,
+  useStatusStore,
+} from '@/stores/statusStore';
 import { ResizableVertical } from '@/components/ui/ResizableVertical';
 import {
   RecordBrowser,
@@ -31,7 +36,12 @@ export default function AnalyzePage() {
   const analyzeError = useAnalyzeStore((s) => s.analyzeError);
   const analyzeSelected = useAnalyzeStore((s) => s.analyzeSelected);
   const selectByRecordingId = useAnalyzeStore((s) => s.selectByRecordingId);
-  const canUpload = uploadsAllowed(useStatusStore((s) => s.probe));
+  const probe = useStatusStore((s) => s.probe);
+  const installed = installedData(probe);
+  const canUpload = uploadsAllowed(probe) && installed.model;
+  const recordsLine = installed.traces
+    ? `${(installed.traceCount ?? 10876).toLocaleString('en-US')} open-licensed test recordings`
+    : 'No test recordings installed';
 
   // Deep link from the universe: /analyze?recording=<id>
   const [searchParams] = useSearchParams();
@@ -48,9 +58,7 @@ export default function AnalyzePage() {
       <aside className="flex w-[19rem] shrink-0 flex-col min-h-0">
         <h1 className="text-h2 text-text-primary">Analyze</h1>
         <p className="mb-3 text-caption text-text-secondary">
-          {canUpload
-            ? '10,876 open-licensed test recordings, or your own upload.'
-            : '10,876 open-licensed test recordings.'}
+          {canUpload ? `${recordsLine}, or your own upload.` : `${recordsLine}.`}
         </p>
         <div className="min-h-0 flex-1">
           <RecordBrowser />
@@ -71,13 +79,25 @@ export default function AnalyzePage() {
           <WaveformPanel />
         </ResizableVertical>
 
+        {!installed.model && (
+          <div className="rounded-[var(--radius-card)] border border-[var(--border-default)] bg-surface-1 p-4">
+            <p className="text-body font-semibold text-text-primary">
+              The classifier package is not installed
+            </p>
+            <p className="mt-1 text-caption text-text-secondary">
+              Without it this installation cannot score a recording. {MISSING_DATA_NOTE} The
+              feature pipeline runs without it: see the quickstart in the README.
+            </p>
+          </div>
+        )}
+
         {/* Run control */}
         {(selected || result || analyzing || analyzeError) && (
           <div className="flex flex-wrap items-center gap-3 rounded-[var(--radius-card)] border border-[var(--border-default)] bg-surface-1 px-4 py-3">
             <button
               type="button"
               onClick={() => void analyzeSelected()}
-              disabled={!selected || analyzing}
+              disabled={!selected || analyzing || !installed.model}
               className="inline-flex items-center gap-2 rounded-[var(--radius-btn)] bg-brand px-4 py-2 text-body font-semibold text-white transition-colors hover:bg-brand-light disabled:opacity-40"
             >
               {analyzing ? (

@@ -76,8 +76,14 @@ in the paper and cannot be re-run from this repository.
 documentation only. **The universe package and the classifier package are not part of this
 release.** They are built from several source datasets with different terms, and they will
 be published separately, under terms that respect each source, once that review is
-complete. Until then a fresh checkout starts, the Universe page is empty, and Analyze
-answers 503, as described under "Running it".
+complete. Until then a fresh checkout starts, and the Universe and Analyze pages say which
+package is missing.
+
+The hosted demo at https://ecg.ammonix.ai runs this code with both packages installed. It
+lets anyone browse the universe: for each of the 63,256 recordings its position, its
+diagnosis labels and the classifier's calls, under pseudonymous IDs, with the 12-lead traces
+of the open PhysioNet recordings. What is not yet released is the downloadable packages
+themselves.
 
 Source datasets and their terms:
 
@@ -136,7 +142,8 @@ python examples/tokenize_ptbxl_record.py
 ```
 
 Expected: "Extracted 26,490 named features", then a few of them. The viewer and the backend
-below start from the same install; without the data package the Universe page is empty.
+below start from the same install; without the data packages the Universe and Analyze pages
+say what is missing.
 
 ## Running it
 

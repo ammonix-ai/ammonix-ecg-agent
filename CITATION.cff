@@ -30,7 +30,7 @@ authors:
   - family-names: Donner
     given-names: Birgit
     affiliation: "University Children's Hospital Basel (UKBB)"
-version: "1.0.0"
+version: "1.1.0"
 date-released: "2026-09-30"
 url: "https://github.com/ammonix-ai/ammonix-ecg-agent"
 license-url: "https://github.com/ammonix-ai/ammonix-ecg-agent/blob/main/LICENSE.md"

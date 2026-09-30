@@ -144,7 +144,10 @@ export interface ApiStatus {
   llmModel?: string | null;
   llmBaseUrl?: string | null;
   classifier?: boolean;
-  universe?: boolean;
+  /** The backend reports each data package it has installed. */
+  universe?: boolean | { ready?: boolean; points?: number | null } | null;
+  model?: { packagePresent?: boolean; loaded?: boolean } | null;
+  traces?: { available?: boolean; records?: number | null } | null;
   modelVersion?: string | null;
   featureCount?: number | null;
   recordCount?: number | null;

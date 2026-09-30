@@ -3,7 +3,12 @@ import { ChevronLeft, ChevronRight, Search, Upload, X } from 'lucide-react';
 import { cn } from '@/design/cn';
 import { RECORD_SOURCES, type RecordSummary } from '@/types/analyze';
 import { PAGE_SIZE, useAnalyzeStore } from '@/stores/analyzeStore';
-import { uploadsAllowed, useStatusStore } from '@/stores/statusStore';
+import {
+  installedData,
+  MISSING_DATA_NOTE,
+  uploadsAllowed,
+  useStatusStore,
+} from '@/stores/statusStore';
 import { validateUpload } from '@/services/analyzeService';
 import { DropZone } from '@/components/ui/DropZone';
 
@@ -34,7 +39,8 @@ export function RecordBrowser() {
   const [uploadProblem, setUploadProblem] = useState<string | null>(null);
 
   const probe = useStatusStore((s) => s.probe);
-  const canUpload = uploadsAllowed(probe);
+  const installed = installedData(probe);
+  const canUpload = uploadsAllowed(probe) && installed.model;
 
   // Debounce the id search so a keystroke is not a request.
   useEffect(() => {
@@ -209,7 +215,14 @@ export function RecordBrowser() {
 
       {/* List */}
       <div className="flex-1 min-h-0 overflow-y-auto rounded-[var(--radius-card)] border border-[var(--border-default)] bg-surface-0">
-        {error ? (
+        {!installed.traces ? (
+          <div className="p-4">
+            <p className="text-body font-semibold text-text-primary">No test recordings installed</p>
+            <p className="text-caption text-text-secondary mt-1">
+              The shipped test recordings come with the trace package. {MISSING_DATA_NOTE}
+            </p>
+          </div>
+        ) : error ? (
           <div className="p-4">
             <p className="text-body text-danger font-semibold">Could not load recordings</p>
             <p className="text-caption text-text-secondary mt-1 break-words">{error}</p>

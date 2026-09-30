@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Minimize2 } from 'lucide-react';
 import { t } from '@/i18n/t';
 import { useVisualisationStore } from '@/stores/visualisationStore';
+import { installedData, MISSING_DATA_NOTE, useStatusStore } from '@/stores/statusStore';
 import type { CohortLatticeStatus, SourceSafeProjectionMetadata } from '@/types/projection';
 import {
   UniverseScene,
@@ -285,6 +286,7 @@ function SourceSafeStatsPanel({
  */
 
 export default function UniversePage() {
+  const universeInstalled = installedData(useStatusStore((s) => s.probe)).universe;
   const isLoading = useVisualisationStore((s) => s.isLoading);
   const error = useVisualisationStore((s) => s.error);
   const points = useVisualisationStore((s) => s.points);
@@ -482,7 +484,17 @@ export default function UniversePage() {
         )}
 
         {/* Center: 3D canvas (full size, base layer) */}
-        {isLoading && points.length === 0 ? (
+        {!universeInstalled ? (
+          <div className="flex flex-col items-center justify-center h-full gap-2 px-6 text-center">
+            <p className="text-body font-semibold text-text-primary">
+              The universe package is not installed
+            </p>
+            <p className="max-w-md text-caption text-text-secondary">
+              This page shows the 63,256 recordings of the paper's universe once the package is
+              in place. {MISSING_DATA_NOTE}
+            </p>
+          </div>
+        ) : isLoading && points.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full gap-3">
             <div className="w-8 h-8 border-2 border-brand border-t-transparent rounded-full animate-spin" />
             <p className="text-sm text-text-secondary">

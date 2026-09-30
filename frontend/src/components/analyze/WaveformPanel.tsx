@@ -23,6 +23,7 @@ export function WaveformPanel({ skipAnimation = false }: { skipAnimation?: boole
   const adapted = useAnalyzeStore((s) => s.adapted);
   const loading = useAnalyzeStore((s) => s.signalLoading);
   const error = useAnalyzeStore((s) => s.signalError);
+  const analyzeError = useAnalyzeStore((s) => s.analyzeError);
   const predictions = useAnalyzeStore((s) => s.result?.predictions);
 
   const [expandedLead, setExpandedLead] = useState<LeadName | null>(null);
@@ -45,7 +46,17 @@ export function WaveformPanel({ skipAnimation = false }: { skipAnimation?: boole
     return (
       <div className="flex h-full flex-col items-center justify-center gap-2 p-6 text-center">
         <Activity className="w-6 h-6 text-text-muted" aria-hidden />
-        {origin === 'upload' ? (
+        {origin === 'upload' && analyzeError ? (
+          <>
+            <p className="text-body font-semibold text-text-primary">
+              Uploaded recording could not be analyzed
+            </p>
+            <p className="text-caption text-text-secondary max-w-md">
+              An upload is not kept on the server, so its waveform comes back with its analysis.
+              The analysis failed (see the message below), so there is nothing to draw.
+            </p>
+          </>
+        ) : origin === 'upload' ? (
           <>
             <p className="text-body font-semibold text-text-primary">
               Uploaded recording — waveform not returned

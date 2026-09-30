@@ -45,7 +45,8 @@ model on one 24 GB GPU.
 ## What runs today
 
 Without the packages: the backend starts and reports `degraded` on `GET /api/status`, the
-viewer builds and loads, the Universe page is empty and Analyze answers 503. The q_psi feature
+viewer builds and loads, and the Universe and Analyze pages say which package is missing.
+The hosted demo at https://ecg.ammonix.ai runs the same code with the packages installed. The q_psi feature
 pipeline runs on any 12-lead WFDB recording you supply.
 
 ## Obtaining data yourself
