@@ -1,0 +1,31 @@
+# The frozen classifier package is 167 MB and ships via Hugging Face, not git.
+/models/
+
+# Data payloads, also distributed separately: the universe (~40 MB) and the
+# 10,876 shipped WFDB recordings (~1.5 GB). Drop this line if you decide to
+# track them.
+/_staging/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Rust accelerator build output (qpsi/qpsi_native)
+target/
+wheels/
+*.pyd
+*.so
+
+# Node
+node_modules/
+dist/
+
+# Runtime logs (uvicorn redirect targets, request traces)
+*.log
+*.log.err
+
+# downloaded by examples/tokenize_ptbxl_record.py
+examples/data/

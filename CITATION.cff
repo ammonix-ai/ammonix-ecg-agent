@@ -1,0 +1,62 @@
+cff-version: 1.2.0
+message: "If you use this software in published research, please cite both the software and the ECG Agent paper (see preferred-citation)."
+title: "Ammonix ECG Agent"
+type: software
+authors:
+  - family-names: Todorov
+    given-names: Matthew
+    affiliation: Ammonix
+  - family-names: Grieder
+    given-names: Lea
+    affiliation: Ammonix
+  - family-names: Glauser
+    given-names: Adele
+    affiliation: Ammonix
+  - family-names: Ruppersberg
+    given-names: Peter
+    affiliation: Ammonix
+  - family-names: Glauser
+    given-names: Duangjai
+    affiliation: Ammonix
+  - family-names: Stingele
+    given-names: Francesca
+    affiliation: Ammonix
+  - family-names: Bonhoeffer
+    given-names: Jan
+    affiliation: "University Children's Hospital Basel (UKBB)"
+  - family-names: Kapur
+    given-names: Karen
+    affiliation: "University Children's Hospital Basel (UKBB)"
+  - family-names: Donner
+    given-names: Birgit
+    affiliation: "University Children's Hospital Basel (UKBB)"
+version: "1.0.0"
+date-released: "2026-09-30"
+url: "https://github.com/ammonix-ai/ammonix-ecg-agent"
+license-url: "https://github.com/ammonix-ai/ammonix-ecg-agent/blob/main/LICENSE.md"
+preferred-citation:
+  type: article
+  title: "The Ammonix ECG Agent: A Local Specialized AI Agent to Transparently Read and Discuss 12-Lead Electrocardiograms"
+  authors:
+    - family-names: Todorov
+      given-names: Matthew
+    - family-names: Grieder
+      given-names: Lea
+    - family-names: Glauser
+      given-names: Adele
+    - family-names: Ruppersberg
+      given-names: Peter
+    - family-names: Glauser
+      given-names: Duangjai
+    - family-names: Stingele
+      given-names: Francesca
+    - family-names: Bonhoeffer
+      given-names: Jan
+    - family-names: Kapur
+      given-names: Karen
+    - family-names: Donner
+      given-names: Birgit
+  year: 2026
+  journal: "Zenodo"
+  doi: "10.5281/zenodo.22871232"
+  url: "https://doi.org/10.5281/zenodo.22871232"

@@ -1,0 +1,8 @@
+# H34 / Q-A6-13: legacy default-output path for dump_constants_json.py.
+# build.rs writes the canonical artifact to ${OUT_DIR}/constants.json (Cargo's
+# build cache); we still ignore the qpsi_native/-rooted file in case the
+# script is invoked by hand.
+constants.json
+
+# Cargo build artifacts
+target/

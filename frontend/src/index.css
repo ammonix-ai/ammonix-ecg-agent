@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+/* Self-hosted brand fonts: Hanken Grotesk (all UI text) and IBM Plex Mono
+   (labels, numbers, code), bundled from the @fontsource npm packages so no
+   page request contacts a font CDN (V3.27 / Q-A3-19: fonts.googleapis.com /
+   fonts.gstatic.com are a privacy / PHI concern in clinical deployments).
+   Vite copies the woff2 files into the build output. */
+@import "@fontsource-variable/hanken-grotesk/wght.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
+@theme {
+  /* Brand palette */
+  --color-brand: #2743B8;
+  --color-brand-light: #3D57C9;
+  --color-brand-muted: #EAF1F8;
+  --color-brand-50: #EEF2FC;
+  --color-brand-100: #DBE3F8;
+  --color-brand-200: #B9C7F1;
+  --color-brand-300: #8FA3E6;
+  --color-brand-400: #5B6FC4;
+  --color-brand-500: #3D57C9;
+  --color-brand-600: #2743B8;
+  --color-brand-700: #1F3593;
+  --color-brand-800: #1A2B75;
+  --color-brand-900: #131C30;
+
+  /* Surfaces */
+  --color-surface-0: #FFFFFF;
+  --color-surface-1: #F5F8FC;
+  --color-surface-2: #EAF1F8;
+
+  /* Text */
+  --color-text-primary: #131C30;
+  --color-text-secondary: #5F7391;
+  --color-text-muted: #A3B1C6;
+
+  /* Status */
+  --color-status-critical: #DC2626;
+  --color-status-medium: #D97706;
+  --color-status-normal: #059669;
+
+  /* Semantic */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+  --color-info: #3B82F6;
+
+  /* Diagnosis families */
+  --color-family-rhythm: #3B82F6;
+  --color-family-atrial: #EC4899;
+  --color-family-ventricular: #EF4444;
+  --color-family-conduction: #F59E0B;
+  --color-family-ischemia: #DC2626;
+  --color-family-structural: #10B981;
+  --color-family-repolarization: #8B5CF6;
+
+  /* CV fold colors */
+  --color-fold-1: #3B82F6;
+  --color-fold-2: #10B981;
+  --color-fold-3: #F59E0B;
+  --color-fold-4: #EF4444;
+  --color-fold-5: #8B5CF6;
+
+  /* Typography */
+  --font-sans: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, -apple-system, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Border radius */
+  --radius-sm: 4px;
+  --radius-btn: 8px;
+  --radius-card: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 20px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-modal: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-dropdown: 0 4px 12px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+/* CSS custom properties for glass effect and borders */
+:root {
+  --surface-glass: rgba(255, 255, 255, 0.72);
+  --surface-glass-border: rgba(255, 255, 255, 0.30);
+  --border-default: #DFE7F1;
+  --border-subtle: #EAF1F8;
+
+  /* V3.24 (Q-A3-10): `--ecg-*` CSS vars removed. Single source for ECG grid
+     colors is `src/types/ecg.ts` `ECG_GRID_COLORS`, consumed via JS imports
+     (CalibrationPulse, ECGGridPaper, LeadTrace, etc.). Zero `var(--ecg-*)`
+     consumers in the codebase pre-V3.24. */
+}
+
+@layer components {
+  .glass-card {
+    background: var(--surface-glass);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--surface-glass-border);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.2s ease, transform 0.15s ease;
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-1px);
+  }
+
+  .fluid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
+    gap: clamp(0.75rem, 0.5rem + 0.5cqi, 1.5rem);
+  }
+
+  .text-display {
+    font-size: clamp(1.75rem, 1.5rem + 1.5cqi, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  .text-h1 {
+    font-size: clamp(1.5rem, 1.25rem + 1cqi, 1.875rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  .text-h2 {
+    font-size: clamp(1.25rem, 1.1rem + 0.75cqi, 1.5rem);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+  }
+
+  .text-h3 {
+    font-size: clamp(1.05rem, 1rem + 0.5cqi, 1.25rem);
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .text-body {
+    font-size: clamp(0.8125rem, 0.75rem + 0.25cqi, 0.875rem);
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .text-caption {
+    font-size: clamp(0.6875rem, 0.65rem + 0.15cqi, 0.75rem);
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  .text-data {
+    font-size: clamp(0.75rem, 0.7rem + 0.2cqi, 0.8125rem);
+    font-weight: 500;
+    line-height: 1.4;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Base body styles */
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background: var(--color-surface-0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-muted);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-secondary);
+}

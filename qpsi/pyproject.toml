@@ -1,0 +1,34 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "qpsi"
+version = "0.1.0"
+description = "ECG signal processing library — WFDB to 566+ features via 2D Gaussian decomposition"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "scikit-learn>=1.3",
+    "wfdb>=4.0",
+]
+
+[project.optional-dependencies]
+nn = ["torch>=2.0"]
+viz = ["matplotlib>=3.7", "plotly>=5.0"]
+test = ["pytest>=7.4"]
+
+[tool.hatch.build]
+# Flat layout: `__init__.py` and submodules live at the project root (this dir),
+# not in a nested `qpsi/` subdir. Hatchling's editable install (`uv-pixi`,
+# `pip install -e`) writes paths under `dev-mode-dirs` to the editable `.pth`.
+# Pointing at `..` (the WaveMedix project dir) puts `WaveMedix/` on sys.path so
+# `import qpsi` resolves to `WaveMedix/qpsi/__init__.py`. Without this,
+# `packages = ["qpsi"]` looks for a non-existent `./qpsi/` subdir and hatchling
+# silently writes an empty `_qpsi.pth`, leaving qpsi unimportable from any cwd
+# other than `WaveMedix/`.
+dev-mode-dirs = [".."]
+
+[tool.hatch.build.targets.wheel]
+packages = ["qpsi"]

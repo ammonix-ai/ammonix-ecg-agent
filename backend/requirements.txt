@@ -1,0 +1,33 @@
+# Ammonix ECG Agent — backend.
+#
+# The universe endpoints are pure serve-path: the projections, probabilities and
+# per-record rows are pre-computed on disk, so they need nothing but FastAPI and
+# numpy.
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2.5
+numpy>=1.24
+python-multipart>=0.0.9      # multipart uploads on POST /api/analyze
+
+# Live inference (services/inference.py, services/projection.py,
+# services/signals.py): the QPSI tokenizer's dependencies plus XGBoost for the
+# frozen 5-swarm classifier. All pip-installable, no compiler required.
+scipy>=1.10
+scikit-learn>=1.3
+wfdb>=4.0
+xgboost>=2.0
+
+# ECG Agent chat (services/llm.py). The OpenAI SDK is deliberately not a
+# dependency: the route calls two documented HTTP endpoints, so an async HTTP
+# client is the whole requirement. Works against vLLM, Ollama or LM Studio.
+httpx>=0.27
+
+# The vendored tokenizer lives at ../qpsi. Install it in editable mode
+#     pip install -e ../qpsi
+# or rely on services/inference.py putting the repo root on sys.path.
+#
+# Optional accelerator: ../qpsi/qpsi_native is a Rust crate that speeds
+# extraction up roughly 16x (21 s -> 1.3 s per record). It needs a Rust
+# toolchain and maturin, and it is genuinely optional — the pure-Python path
+# produces bit-identical feature values.
+#     pip install maturin && maturin build --release -m ../qpsi/qpsi_native/Cargo.toml

@@ -1,0 +1,108 @@
+{
+  "threshold": 0.2143,
+  "huca_oof_auroc": 0.9058316523014854,
+  "groups": [
+    {
+      "group": "HUCA cases (OOF)",
+      "n": 76,
+      "n_flagged": 58,
+      "rate": 0.7631578947368421
+    },
+    {
+      "group": "HUCA controls (OOF)",
+      "n": 287,
+      "n_flagged": 19,
+      "rate": 0.06620209059233449
+    },
+    {
+      "group": "PTB-XL (external)",
+      "n": 4028,
+      "n_flagged": 418,
+      "rate": 0.10377358490566038
+    },
+    {
+      "group": "CPSC (external)",
+      "n": 3150,
+      "n_flagged": 523,
+      "rate": 0.16603174603174603
+    },
+    {
+      "group": "Georgia (external)",
+      "n": 1994,
+      "n_flagged": 60,
+      "rate": 0.03009027081243731
+    },
+    {
+      "group": "Chapman (external)",
+      "n": 1301,
+      "n_flagged": 127,
+      "rate": 0.09761721752498079
+    },
+    {
+      "group": "MIMIC-LVEF40 (external)",
+      "n": 1093,
+      "n_flagged": 269,
+      "rate": 0.24611161939615736
+    },
+    {
+      "group": "MIMIC-Control (external)",
+      "n": 616,
+      "n_flagged": 3,
+      "rate": 0.00487012987012987
+    },
+    {
+      "group": "STEMI-NSTEMI (external)",
+      "n": 422,
+      "n_flagged": 79,
+      "rate": 0.1872037914691943
+    },
+    {
+      "group": "CPSC-Extra (external)",
+      "n": 403,
+      "n_flagged": 14,
+      "rate": 0.034739454094292806
+    },
+    {
+      "group": "VT (external)",
+      "n": 343,
+      "n_flagged": 82,
+      "rate": 0.239067055393586
+    },
+    {
+      "group": "pre-AF (external)",
+      "n": 259,
+      "n_flagged": 24,
+      "rate": 0.09266409266409266
+    },
+    {
+      "group": "private-STEMI (external)",
+      "n": 161,
+      "n_flagged": 18,
+      "rate": 0.11180124223602485
+    },
+    {
+      "group": "Amyloidosis (external)",
+      "n": 61,
+      "n_flagged": 4,
+      "rate": 0.06557377049180328
+    },
+    {
+      "group": "Brugada (external)",
+      "n": 56,
+      "n_flagged": 13,
+      "rate": 0.23214285714285715
+    },
+    {
+      "group": "Chagas (external)",
+      "n": 48,
+      "n_flagged": 9,
+      "rate": 0.1875
+    },
+    {
+      "group": "MIMIC SR normals (external)",
+      "n": 19805,
+      "n_flagged": 22,
+      "rate": 0.001110830598333754
+    }
+  ]
+}

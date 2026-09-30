@@ -1,0 +1,7 @@
+{
+  "shipped_final_full_auc_recomputed": 0.8433070660203041,
+  "labelfix_final_full_auc": 0.7624095564197513,
+  "labelfix_huca_internal_auc": 0.5459380157711351,
+  "n_huca_pos": 76,
+  "n_huca_neg": 287
+}

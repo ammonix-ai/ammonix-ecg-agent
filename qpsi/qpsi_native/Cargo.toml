@@ -1,0 +1,25 @@
+[package]
+name = "qpsi-native"
+version = "0.1.0"
+edition = "2021"
+description = "Rust-accelerated QPSI fitting kernels for ECG signal processing"
+build = "build.rs"
+
+[lib]
+name = "qpsi_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.24", features = ["extension-module"] }
+numpy = "0.24"
+rayon = "1.10"
+libm = "0.2"
+nalgebra = "0.33"
+
+[build-dependencies]
+serde_json = "1.0"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
