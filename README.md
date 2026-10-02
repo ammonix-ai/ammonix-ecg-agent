@@ -54,8 +54,12 @@ This is one of the companion releases of the Ammonix research program:
 |---|---|
 | Foundation paper | https://doi.org/10.5281/zenodo.22859098 — the Ammonix method: retrospective harness optimization with verifiable rewards |
 | **ECG agent (this repo)** | https://doi.org/10.5281/zenodo.22871232 — *The Ammonix ECG Agent: A Local Specialized AI Agent to Transparently Read and Discuss 12-Lead Electrocardiograms* |
-| RCM agent | https://github.com/ammonix-ai/ammonix-rcm-agent · https://doi.org/10.5281/zenodo.22871212 |
+| RCM agent | https://github.com/ammonix-ai/ammonix-rcm-agent · https://doi.org/10.5281/zenodo.23078509 |
 | Control-room agent | https://github.com/ammonix-ai/ammonix-industrial-control-room-agent · https://doi.org/10.5281/zenodo.22871228 |
+| Rocket launch agent | https://github.com/ammonix-ai/ammonix-rocket-launch |
+| Wild Departures | https://github.com/ammonix-ai/ammonix-wild-departures |
+| Ask Ammonix | coming later — a local application that answers questions about the architecture, its evidence and its limits, from authored, source-linked text |
+| Ammonix**Code** | coming later — our architecture-native coding agent, purpose-built to create systems based on the Ammonix architecture |
 
 ## What this repository is, and what it is not
 
