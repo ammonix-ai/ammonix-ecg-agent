@@ -170,10 +170,10 @@ export function renderEcgPng(ecg: ECGData, options: EcgPngOptions = {}): string 
         ctx.lineWidth = ECG_GRID_COLORS.traceWidth;
         ctx.lineJoin = 'round';
         ctx.beginPath();
-        // One polyline point per output pixel column: the min/max pair per
-        // column would double the stroke count for no gain at this size.
-        const step = Math.max(1, Math.floor(n / cellW));
-        for (let i = 0; i < n; i += step) {
+        // Preserve every sample, including subpixel extrema. Fixed-stride
+        // decimation can erase narrow pacing spikes between retained points.
+        // A typical 10-second, 500 Hz ECG is only 60,000 points across 12 leads.
+        for (let i = 0; i < n; i += 1) {
           const x = x0 + (i / fs) * pxPerSec;
           const y = midY - sampleAt(samples, i) * pxPerMv;
           if (i === 0) ctx.moveTo(x, y);

@@ -136,7 +136,10 @@ DIAGNOSIS_CHECKS: dict[str, str] = {
     "pacing rhythm": (
         "Sharp narrow pacing spikes immediately preceding P (atrial), QRS "
         "(ventricular) or both, with a broad paced QRS, typically LBBB-like from an "
-        "RV lead. Against: no spikes anywhere across the twelve leads."
+        "RV lead. Check whether narrow spikes are visible; this checklist does "
+        "not establish their presence or absence. If image resolution is "
+        "insufficient, state that visibility is uncertain. Nonvisibility in "
+        "the rendered image alone does not rule out pacing."
     ),
     "ventricular premature beats": (
         "Early wide QRS with no preceding P, discordant T, usually followed by a "

@@ -76,6 +76,9 @@ HOW TO ANSWER
 - Answer the question actually asked. Do not restate the brief back to them.
 
 WHAT YOU MAY AND MAY NOT CLAIM
+- Skill checklists describe evidence to look for, not findings already observed
+  in this recording. In particular, an "Against:" clause is conditional: do not
+  repeat it as a patient finding unless the available evidence supports it.
 - The diagnoses in the brief are settled. Your task is to explain them, and to
   check them against the trace — confirming, or reporting honestly where the
   trace does not support them.
